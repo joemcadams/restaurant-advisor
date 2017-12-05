@@ -1,4 +1,6 @@
-# Interview Project
+# Restaurant Advisor
+
+This project is the final project for our intro to databases course. It's a React/MongoDB/Node web application that lists restaurants, reviews, and allows an authenticated user to order items.
 
 ## Dependencies
 
