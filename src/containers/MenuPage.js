@@ -88,9 +88,9 @@ export class MenuPage extends React.Component {
                         title={ this.state.menu[this.state.menuID].title }
                         price={ this.state.menu[this.state.menuID].price }
                         handleOrderClick={ this.handleAddOrder.bind(this) }
-                        handleClose={ () => this.setState(cloneStateWith(this.state, { modalOpen: false })) }
+                        handleClose={ () => this.setState(cloneStateWith(this.state, { orderItemModalOpen: false })) }
                         isOpen={ this.state.orderItemModalOpen }
-                        onRequestClose={ () => this.setState(cloneStateWith(this.state, { modalOpen: false }))  }
+                        onRequestClose={ () => this.setState(cloneStateWith(this.state, { orderItemModalOpen: false }))  }
                         description={ this.state.menu[this.state.menuID].description }
                     />
                 :   <div/>
