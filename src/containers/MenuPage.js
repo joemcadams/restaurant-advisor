@@ -42,18 +42,18 @@ export class MenuPage extends React.Component {
 
     openDialog = id => this.setState(cloneStateWith(this.state, { orderItemModalOpen: true, menuID: id }))
 
-    handleAddOrder = quantity => {
-        const currentMenuItem = cloneStateWith(cloneDeep(this.state.menu[this.state.menuID]), { quantity: quantity })
-        let updatedOrderItem = cloneDeep(this.state.order.items)
-        updatedOrderItem.push(currentMenuItem)
+    handleOrderClick = (quantity, isDelivery) => {
+        const newOrderItem = cloneStateWith(cloneDeep(this.state.menu[this.state.menuID]), { quantity: quantity, delivery: isDelivery })
+        let orderItems = cloneDeep(this.state.order.items)
+        orderItems.push(newOrderItem)
         let updatedPrice = clone(this.state.order.totalPrice) 
-        updatedPrice+= (currentMenuItem.price * quantity)
+        updatedPrice += (newOrderItem.price * quantity)
         this.setState(cloneStateWith(this.state, {
-            modalOpen: false,
+            orderItemModalOpen: false,
             menuID: this.state.menuID,
             menu: this.state.menu,
             order: {
-                items: updatedOrderItem,
+                items: orderItems,
                 totalPrice: updatedPrice 
             }
         }))
@@ -87,16 +87,14 @@ export class MenuPage extends React.Component {
                 ?  <MenuOrderDialog
                         title={ this.state.menu[this.state.menuID].title }
                         price={ this.state.menu[this.state.menuID].price }
-                        handleOrderClick={ this.handleAddOrder.bind(this) }
+                        handleOrderClick={ this.handleOrderClick.bind(this) }
                         handleClose={ () => this.setState(cloneStateWith(this.state, { orderItemModalOpen: false })) }
                         isOpen={ this.state.orderItemModalOpen }
-                        onRequestClose={ () => this.setState(cloneStateWith(this.state, { orderItemModalOpen: false }))  }
+                        onRequestClose={ () => this.setState(cloneStateWith(this.state, { orderItemModalOpen: false })) }
                         description={ this.state.menu[this.state.menuID].description }
                     />
                 :   <div/>
             }
         </div>
     )
-
-
 }

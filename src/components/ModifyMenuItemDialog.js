@@ -29,8 +29,8 @@ class MofifyMenuItemDialog extends Component {
     }
 
     getButtons = () => [
-        <RaisedButton label="Cancel" onClick={ this.props.handleClose }/>,
-        <RaisedButton label="Add" primary={ true } style={{ marginLeft: '.5vw' }} onClick={ () => this.props.handleOrderClick(this.state.quantity) }/>
+        <RaisedButton label='Cancel' onClick={ this.props.handleClose }/>,
+        <RaisedButton label='Add' primary={ true } style={{ marginLeft: '.5vw' }} onClick={ () => this.props.handleOrderClick(this.state.quantity) }/>
     ]
 
     render = () => (

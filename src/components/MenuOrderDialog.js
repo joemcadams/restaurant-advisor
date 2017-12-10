@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import { RaisedButton, Dialog, TextField } from 'material-ui'
+import { Dialog, RaisedButton, RadioButtonGroup, RadioButton, TextField } from 'material-ui'
 import { cloneStateWith } from '../utils'
+
 export class MenuOrderDialog extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
             quantity: 1,
-            orderCost: this.props.price
+            orderCost: this.props.price,
+            delivery: true
         }
     }
 
@@ -19,9 +21,11 @@ export class MenuOrderDialog extends Component {
             : this.setState(cloneStateWith(this.state, { quantity: inputStringAsInt, orderCost: inputStringAsInt * this.props.price }))
     }
     
+    handleRadioButtonClick = (event, value) => this.setState(cloneStateWith(this.state, value === 'delivery' ? { delivery: true } : { delivery: false }))
+
     getButtons = () => [
-        <RaisedButton label="Cancel" onClick={ this.props.handleClose }/>,
-        <RaisedButton label="Add" primary={ true } style={{ marginLeft: '.5vw' }} onClick={ () => this.props.handleOrderClick(this.state.quantity) }/>
+        <RaisedButton label='Cancel' onClick={ this.props.handleClose }/>,
+        <RaisedButton label='Add' primary={ true } style={{ marginLeft: '1vw' }} onClick={ () => this.props.handleOrderClick(this.state.quantity, this.state.delivery) }/>
     ]
 
     render = () => (
@@ -37,19 +41,29 @@ export class MenuOrderDialog extends Component {
             <br/>
             <br/>
 
-            <p>
-                <span style={{ textStyle: 'bold' }}> Total Price: $</span>
-                { this.state.orderCost }
-            </p>
-
-            <br/>
-            <br/>
-            
+            <RadioButtonGroup 
+                onChange={ this.handleRadioButtonClick } 
+                defaultSelected='delivery'
+                name='deliveryOptions'
+            >
+                <RadioButton
+                    value='pick-up'
+                    label='pick-up'
+                    style={{ marginBottom: '2vh' }}
+                />
+                <RadioButton
+                    value='delivery'
+                    label='delivery'
+                />
+            </RadioButtonGroup>
             <TextField
                 value={ this.state.quantity }
                 floatingLabelText='How many?'
                 onChange={ this.handleQuantityChange }
             />
+            <p style={{ textAlign: 'right', fontWeight: 'bold' }}> 
+                Total Price: $ { this.state.orderCost }
+            </p>
         </Dialog>
     )
 }

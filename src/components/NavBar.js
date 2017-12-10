@@ -21,15 +21,15 @@ export class NavBar extends Component {
         <Paper zDepth={ 1 }>
             <Toolbar>
                 <ToolbarGroup firstChild={ true }>
-                    <ToolbarTitle style={{ marginLeft: '2vw' }} text="Restaurant Advisor"/>
-                    <FlatButton label="Restaurants" primary={ true } />
-                    <FlatButton label="Reviews" primary={ true } />
-                    <FlatButton label="Orders" primary={ true } />
+                    <ToolbarTitle style={{ marginLeft: '2vw' }} text='Restaurant Advisor'/>
+                    <FlatButton label='Restaurants' primary={ true } />
+                    <FlatButton label='Reviews' primary={ true } />
+                    <FlatButton label='Orders' primary={ true } />
                 </ToolbarGroup>
                 <ToolbarGroup>
-                    <RaisedButton label="Current Order" primary={ true } icon={ <MdShoppingBasket size={ 20 } /> } />
+                    <RaisedButton label='Current Order' primary={ true } icon={ <MdShoppingBasket size={ 20 } /> } />
                     <ToolbarSeparator/>
-                    <RaisedButton label="Logout" secondary={ true } />
+                    <RaisedButton label='Logout' secondary={ true } />
                 </ToolbarGroup>
             </Toolbar>
         </Paper>
