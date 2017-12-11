@@ -12,7 +12,7 @@ export const LoginPage = () =>  (
                 fullWidth={ true }
                 floatingLabelText={ 'Password' }
             />
-            <RaisedButton label={ 'Sign in' } primary={ true } fullWidth={ true }/>
+            <RaisedButton label={ 'Sign in' } primary={ true } fullWidth={ true } style={{ marginBottom: '1vh' }}/>
             <RaisedButton label={ 'New User' } secondary={ true } fullWidth={ true }/>
         </Paper>
     </div>
