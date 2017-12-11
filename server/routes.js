@@ -3,9 +3,9 @@ import { Database as db } from '../database'
 
 const app = express()
 
-app.get('/Restaurants', (req, res) => res.send(db.getAllRestaurants())
+app.get('/Restaurants', (req, res) => res.send(db.getAllRestaurants()))
 
-app.get('/Reviews', (req, res) => res.send(db.getAllReviews())
+app.get('/Reviews', (req, res) => res.send(db.getAllReviews()))
 
 app.post('/Reviews', (req, res) => { db.addReview(req) })
 
