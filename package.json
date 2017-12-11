@@ -1,19 +1,16 @@
 {
-  "name": "tablexi-project",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "lodash": "^4.17.4",
-    "material-ui": "^0.19.4",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-icons": "^2.2.7",
-    "react-scripts": "1.0.14"
-  },
+  "name": "restaurant-advisor",
+  "version": "1.0.0",
+  "description": "MERN app for databases",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "initialize": "concurrently \"cd client/ && npm i\" \"cd server/ && npm i\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joemcadams/restaurant-advisor.git"
+  },
+  "author": "Joe McAdams, Nathan Arpin",
+  "license": "MIT",
+  "homepage": "https://github.com/joemcadams/restaurant-advisor#readme"
 }

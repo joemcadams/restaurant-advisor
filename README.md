@@ -22,22 +22,29 @@ Then you should be all ready to go!
 The folder structure ...
 
 ```
-├── node_modules
-├── public
-│   └── index.html
-└── src
-    └── components
-        └── ...
-    └── containers
-        └── ...
-    └── test
-        └── ...
-    └── styles
-        └── ...
-    └── index.js
-    └── registerServiceWorker.js
-├── .gitignore
-├── package.json
+├── client
+    └── node_modules
+    └── public
+        └── index.html
+    └── src
+        └── components
+            └── ...  <- All the UI components for the application, written in React
+        └── test
+            └── ...  <- Tests for various utilities we've written
+        └── styles
+            └── ...  <- Basic css stlying for the application (most styling is written in-line with the react components)
+        └── index.js <- The entry point for the client side code
+        └── registerServiceWorker.js
+    └── .gitignore
+    └── package.json
+├── server
+    └── bin
+        └── www <- Sets the top-level server configuration for the express app
+    └── db
+        └── ... <- Contains the js files for db schema, configuration, connections, etc.
+    └── app.js <- Entry point for the server-side code (e.g. sets up API endpoints)
+    └── package.json
+
 ├── README.md
 ```
 

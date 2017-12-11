@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Dialog, RaisedButton, RadioButtonGroup, RadioButton, TextField } from 'material-ui'
-import { cloneStateWith } from '../utils'
+import { cloneStateWith } from '../../utils'
 
 export class MenuOrderDialog extends Component {
 

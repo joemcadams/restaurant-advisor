@@ -1,10 +1,10 @@
 import React from 'react'
 import { clone, cloneDeep } from 'lodash'
-import { cloneStateWith, group } from '../utils'
-import { RestaurantTitle } from '../components/RestaurantTitle'
-import { MenuOrderDialog } from '../components/MenuOrderDialog'
-import { MenuItem } from '../components/MenuItem'
-import * as MENU_ITEMS from '../SAMPLE_MENU.json'
+import { cloneStateWith, group } from '../../utils'
+import { RestaurantTitle } from '../restaurant/RestaurantTitle'
+import { MenuOrderDialog } from './MenuOrderDialog'
+import { MenuItem } from './MenuItem'
+import * as MENU_ITEMS from '../../SAMPLE_MENU.json'
 
 export class MenuPage extends React.Component {
     

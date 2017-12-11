@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { RaisedButton, Dialog, TextField } from 'material-ui'
-import { cloneStateWith } from '../utils'
+import { cloneStateWith } from '../../utils'
 
 class MofifyMenuItemDialog extends Component {
     constructor(props) {
