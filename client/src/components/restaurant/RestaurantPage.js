@@ -1,7 +1,7 @@
 import AutoComplete from 'material-ui/AutoComplete'
 import * as React from 'react'
-import { RestaurantList } from '../components/RestaurantList'
-import { cloneStateWith } from '../utils'
+import { RestaurantList } from './RestaurantList'
+import { cloneStateWith } from '../../utils'
 
 export class RestaurantPage extends React.Component{
 

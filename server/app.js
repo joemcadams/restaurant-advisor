@@ -21,4 +21,39 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+const rest = [
+	{
+	name: "Tony's Balogna Pony",
+    diningType: "Fast Food",
+    hours: "9AM-5PM",
+    priceRange: "5-35",
+    offersDelivery: true,
+    outdoors: true,
+    email: "tony@bologna.pony",
+    phone: "414-323-4444",
+    streetNo: 42,
+    streetName: "W. Wisconsin Ave.",
+    city: "Milwaukee",
+    state: "Wisconsin",
+    zip: "53233",
+}]
+
+app.get('/Restaurant', (req, res) => res.send(rest))
+
+/*
+ * +            name="Tony's Balogna Pony"
+ +            diningType="Fast Food"
+ +            hours="9AM-5PM"
+ +            priceRange="5-35"
+ +            offersDelivery={ true }
+ +            outdoors={ true }
+ +            email="tony@bologna.pony"
+ +            phone="414-323-4444"
+ +            streetNo={ 42 }
+ +            streetName="W. Wisconsin Ave."
+ +            city="Milwaukee"
+ +            state="Wisconsin"
+ +            zip="53233"
+ * */
+
 module.exports = app;
