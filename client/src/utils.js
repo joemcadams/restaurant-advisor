@@ -22,3 +22,36 @@ export const group = (arr) => {
         }
     }
 }
+
+export const match = (item) => new Match(item)
+
+class Match{
+	
+	item
+	listOfCases
+	defaultCase
+	
+	constructor(item){
+		this.item = item
+		this.listOfCases = []
+	}
+	
+	addCase = (conditional, result) => {
+		this.listOfCases.push({conditional: conditional, result: result})
+		return this
+	}
+	
+	setDefault = (result) => {
+		this.defaultCase = result
+		return this
+	}
+	
+	result = () => {
+		var output
+		this.listOfCases.forEach(set => { if(set.conditional === this.item) output = set.result })
+		if(!output && this.defaultCase) output = this.defaultCase
+		if(!output) throw 'Must have at least one true case in match'
+		
+		return output
+	}
+}

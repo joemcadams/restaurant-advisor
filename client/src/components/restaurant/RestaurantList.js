@@ -17,6 +17,7 @@ export const RestaurantList = (props) =>
 	            city={ rest.city }
 	            state={ rest.state }
 	            zip={ rest.zip }
+	        	openMenu={ props.openMenu }
 	        />
 	)
 )

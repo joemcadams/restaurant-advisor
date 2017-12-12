@@ -8,7 +8,7 @@ import * as MENU_ITEMS from '../../SAMPLE_MENU.json'
 
 export class MenuPage extends React.Component {
     
-    constructor() {
+    constructor(props) {
         super()
         this.state = {
             orderItemModalOpen: false,
@@ -22,7 +22,10 @@ export class MenuPage extends React.Component {
         }
     }
 
-    componentDidMount() {
+    componentDidMount = /* async */ () => {
+    	
+    	//let menu = await fetch(`/Menu/${this.props.restaurant}`)
+    	
         this.setState({
             orderItemModalOpen: this.state.orderItemModalOpen,
             editItemModalOpen: this.state.editItemModalOpen,
@@ -81,7 +84,7 @@ export class MenuPage extends React.Component {
 
     render = () => (
         <div>
-            <RestaurantTitle />
+            <RestaurantTitle name={this.props.restaurant}/>
             { this.getMenu() }
             { this.state.orderItemModalOpen 
                 ?  <MenuOrderDialog
