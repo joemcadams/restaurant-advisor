@@ -17,12 +17,14 @@ export class App extends React.Component{
 		this.setState({page: page})
 	}
 	
-	passthroughLogin = () => {this.setState({page:'Restaurant'})}
+    passthroughLogin = () => this.changePage('Restaurant')
+    
+    logout = () => this.changePage('Login') 
 	
 	render(){
 		return(
 			<MuiThemeProvider>
-				{this.state.page === 'Login' ? <div /> : <NavBar />}
+				{this.state.page === 'Login' ? <div /> : <NavBar onLogout={ () => this.logout.bind(this) }/>}
 				{(this.state.page === 'Login') 
 					? <LoginPage passthrough={this.passthroughLogin}/>
 					: (this.state.page === 'Menu')
