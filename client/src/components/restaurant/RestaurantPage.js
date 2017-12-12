@@ -1,4 +1,4 @@
-import AutoComplete from 'material-ui/AutoComplete'
+import { AutoComplete, Paper } from 'material-ui'
 import * as React from 'react'
 import { RestaurantList } from './RestaurantList'
 import { cloneStateWith } from '../../utils'
@@ -26,16 +26,20 @@ export class RestaurantPage extends React.Component{
 
     render() {
     	return(
-    		<div>
+    		<Paper zDepth={ 1 } style={{ minHeight: '100vh', width: '90vw', marginLeft: '5vw', padding: '5em', marginTop: '5vh' }}>
+    			<h1 style={{ textAlign: 'center' }}> Restaurants </h1>
 	    		<AutoComplete 
 	    			floatingLabelText={"Restaurant Name"}
 	    			filter={AutoComplete.caseInsensitiveFilter}
 	    			dataSource={this.state.restaurants.map(rest => rest.name)}
-	    			maxSearchResults={5}
+	    			maxSearchResults={ 2 }
 	    			onUpdateInput={this.updateSearchTerms}
+	    			menuStyle={{ width: '80vw' }}
+	    			listStyle={{ width: '80vw' }}
+	    			textFieldStyle={{ width: '80vw', marginBottom: '10vh' }}
 	    		/>
-	    		<RestaurantList list={this.state.restaurants.filter(rest => rest.name.contains(this.state.searchTerms))} />
-    		</div>
+	    		<RestaurantList list={this.state.restaurants.filter(rest => rest.name.toLowerCase().includes(this.state.searchTerms.toLowerCase()))} />
+    		</Paper>
     	)
     }
 }
