@@ -1,7 +1,8 @@
-var express = require('express');
+var express = require('express')
+var connect = require('./db/app').connect
+var app = express()
 
-var app = express();
-
+connect()
 app.get('/', (req, res) => res.send("Hello World"))
 
 const rest = [
