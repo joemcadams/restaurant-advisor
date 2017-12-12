@@ -4,7 +4,8 @@
   "description": "MERN app for databases",
   "main": "index.js",
   "scripts": {
-    "initialize": "concurrently \"cd client/ && npm i\" \"cd server/ && npm i\""
+    "initialize": "concurrently \"cd client/ && npm i\" \"cd server/ && npm i\"",
+    "start": "concurrently \"cd client/ && npm start\" \" cd server/bin && node www\""
   },
   "repository": {
     "type": "git",
