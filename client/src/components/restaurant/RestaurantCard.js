@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardHeader, CardText, Divider, List, ListItem } from 'material-ui'
+import { Card, CardHeader, CardText, Divider, ListItem } from 'material-ui'
 import MdEventSeat from 'react-icons/lib/md/event-seat'
 import FaDollar from 'react-icons/lib/fa/dollar'
 import MdAirportShutte from 'react-icons/lib/md/airport-shuttle'
@@ -8,7 +8,7 @@ import MdEmail from 'react-icons/lib/md/email'
 import MdLocalPhone from 'react-icons/lib/md/local-phone'
 
 export const RestaurantCard = (props) => (
-    <Card style={{ width: '80vw', marginLeft: '10vw', marginBottom: '3vh' }}>
+    <Card style={{ width: '80vw', marginBottom: '3vh' }}>
         <CardHeader
             title={ props.name }
             subtitle={ props.diningType }
