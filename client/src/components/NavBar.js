@@ -26,7 +26,7 @@ export class NavBar extends Component {
                 <ToolbarGroup>
                     <RaisedButton label='Current Order' primary={ true } icon={ <MdShoppingBasket size={ 20 } /> } />
                     <ToolbarSeparator/>
-                    <RaisedButton label='Logout' secondary={ true } />
+                    <RaisedButton label='Logout' secondary={ true } onClick={ this.props.onLogout() }/>
                 </ToolbarGroup>
             </Toolbar>
         </Paper>
