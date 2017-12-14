@@ -1,6 +1,27 @@
-var mongoose = require('mongoose');
+const Mongoose = require('mongoose');
 
-var customerSchema = new mongoose.Schema({
+const foodSchema = new Mongoose.Schema({
+    id: Mongoose.Schema.ObjectId,
+    name: String,
+    category: String,
+    price: Number
+})
+
+const menuSchema = new Mongoose.Schema({
+    id: Mongoose.Schema.ObjectId,
+    food: [foodSchema]
+})
+
+const reviewSchema = new Mongoose.Schema({
+    id: Mongoose.Schema.ObjectId,
+    customer: { email: String },
+    title: String,
+    description: String,
+    date: { type: Date, default: Date.now },
+    rating: Number
+})
+
+const customerSchema = new Mongoose.Schema({
     email: String,
     fName: String,
     mInit: String,
@@ -14,8 +35,9 @@ var customerSchema = new mongoose.Schema({
     reviews: [reviewSchema]
 })
 
-var restaurantSchema = new mongoose.Schema({
-    id: ObjectId,
+
+const restaurantSchema = new Mongoose.Schema({
+    id: Mongoose.Schema.ObjectId,
     name: String,
     phone: String,
     email: String,
@@ -33,39 +55,21 @@ var restaurantSchema = new mongoose.Schema({
     menu: menuSchema
 })
 
-var reviewSchema = new mongoose.Schema({
-    id: ObjectId,
-    customer: { email: String },
-    title: String,
-    description: String,
-    date: { type: Date, default: Date.now },
-    rating: Number
-})
 
-var foodSchema = new mongoose.Schema({
-    id: ObjectId,
-    name: String,
-    category: String
-})
 
-var menuSchema = new mongoose.Schema({
-    id: ObjectId,
-    food: [foodSchema],
-    price: Number
-})
-
-var orderSchema = new mongoose.Schema({
-    id: ObjectId,
+const orderSchema = new Mongoose.Schema({
+    id: Mongoose.Schema.ObjectId,
     date: { type: Date, default: Date.now },
     isDelivery: Boolean,
     isTakeOut: Boolean,
     order: [{ food: foodSchema, quantity: Number }]
 })
 
-module.exports.default = {
-    customer: customerSchema,
-    restaurant: restaurantSchema,
-    review: reviewSchema,
-    menu: menuSchema,
-    order: orderSchema
+module.exports = {
+    customer: Mongoose.model('Customer', customerSchema),
+    restaurant: Mongoose.model('Restaurant', restaurantSchema),
+    review: Mongoose.model('Review', reviewSchema),
+    menu: Mongoose.model('Menu', menuSchema),
+    order: Mongoose.model('Order', orderSchema),
+    food: Mongoose.model('Food', foodSchema)
 }
