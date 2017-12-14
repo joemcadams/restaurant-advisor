@@ -11,9 +11,10 @@ export class AddReviewDialog extends React.Component {
 				description:''
 		}
 	}
+
 	
-	componentDidMount = () => {
-		fetch('/Review')
+	sendReview = () => {
+		fetch(`/Review/${this.props.restaurant}/${this.props.customer}`, { method:'POST', body:{this.state.title, this.state.description}})
 	}
 	
     getButtons = () => [
@@ -21,6 +22,9 @@ export class AddReviewDialog extends React.Component {
         <RaisedButton label='Submit' primary={ true } style={{ marginLeft: '1vw' }} onClick={ () => {} }/>
     ]
 
+    updateTitle = (title) => this.setState(cloneStateWith(this.state, {title:title}))
+    updateDesc = (desc) => this.setState(cloneStateWith(this.state, {description:desc}))
+    
     render = () => (
         <Dialog
             title={ this.props.title }
@@ -29,11 +33,11 @@ export class AddReviewDialog extends React.Component {
             open={ this.props.isOpen }
             onRequestClose={ this.props.handleClose }
         >
-            
             <TextField
                 floatingLabelText='Title'
-                	value={this.state.title}
-                	style={{marginBotton:'1vh'}}
+                value={this.state.title}
+                style={{marginBotton:'1vh'}}
+            	onUpdate={this.updateTitle}
             />
 	    </Dialog>
     )

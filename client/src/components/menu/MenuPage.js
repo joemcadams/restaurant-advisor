@@ -22,9 +22,9 @@ export class MenuPage extends React.Component {
         }
     }
 
-    componentDidMount = /* async */ () => {
+    componentDidMount = async () => {
     	
-    	//let menu = await fetch(`/Menu/${this.props.restaurant}`)
+    	let menu = await fetch(`/Menu/${this.props.restaurant}`)
     	
         this.setState({
             orderItemModalOpen: this.state.orderItemModalOpen,
