@@ -1,41 +1,42 @@
-var express = require('express')
-var connect = require('./db/app').connect
-var app = express()
+const express = require('express')
+const DB = require('./services/databaseService')
+const app = express()
 
-connect()
-app.get('/', (req, res) => res.send("Hello World"))
+DB.initialize()
 
-const rest = [
-	{
-	name: "Tony's Balogna Pony",
-    diningType: "Fast Food",
-    hours: "9AM-5PM",
-    priceRange: "5-35",
-    offersDelivery: true,
-    outdoors: true,
-    email: "tony@bologna.pony",
-    phone: "414-323-4444",
-    streetNo: 42,
-    streetName: "W. Wisconsin Ave.",
-    city: "Milwaukee",
-    state: "Wisconsin",
-    zip: "53233",
-},{
-	name: "Red Rocket",
-    diningType: "Fast Food",
-    hours: "9AM-5PM",
-    priceRange: "5-35",
-    offersDelivery: true,
-    outdoors: true,
-    email: "tony@bologna.pony",
-    phone: "414-323-4444",
-    streetNo: 42,
-    streetName: "W. Wisconsin Ave.",
-    city: "Milwaukee",
-    state: "Wisconsin",
-    zip: "53233",
-}]
+app.get('/', (req, res) => res.send("Go to localhost:3000"))
 
-app.get('/Restaurants', (req, res) => res.send(rest))
+// const rest = [
+// 	{
+// 	name: "Tony's Balogna Pony",
+//     diningType: "Fast Food",
+//     hours: "9AM-5PM",
+//     priceRange: "5-35",
+//     offersDelivery: true,
+//     outdoors: true,
+//     email: "tony@bologna.pony",
+//     phone: "414-323-4444",
+//     streetNo: 42,
+//     streetName: "W. Wisconsin Ave.",
+//     city: "Milwaukee",
+//     state: "Wisconsin",
+//     zip: "53233",
+// },{
+// 	name: "Red Rocket",
+//     diningType: "Fast Food",
+//     hours: "9AM-5PM",
+//     priceRange: "5-35",
+//     offersDelivery: true,
+//     outdoors: true,
+//     email: "tony@bologna.pony",
+//     phone: "414-323-4444",
+//     streetNo: 42,
+//     streetName: "W. Wisconsin Ave.",
+//     city: "Milwaukee",
+//     state: "Wisconsin",
+//     zip: "53233",
+// }]
+
+app.get('/Restaurants', (req, res) => DB.getRestaurants(res))
 
 module.exports = app;

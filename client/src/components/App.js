@@ -20,7 +20,12 @@ export class App extends React.Component{
 	
     passthroughLogin = () => this.changePage('Restaurant')
     
-    logout = () => this.changePage('Login') 
+    logout = async () => { 
+        let response = await fetch('/Restaurants')
+        let restaurants = await response.json()
+        console.log(restaurants)
+        this.changePage('Login') 
+    }
 	
     openMenuForRestaurant = (rest) => {
     	this.setState(cloneStateWith(this.state, {page: 'Menu', restaurant: rest}))

@@ -6,6 +6,8 @@ This project is the final project for our intro to databases course. It's a Reac
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You'll need to have a version of [Node](https://nodejs.org/en/) >= 6.0 to run the project locally.
 
+The project also uses Mongo for the database language. You can install it [here](https://docs.mongodb.com/manual/https://docs.mongodb.com/manual/installation/#tutorial-installation/install-on-linux/)
+
 ## Installation
 
 To get started, you'll only need to run a couple of commands.
@@ -13,6 +15,7 @@ To get started, you'll only need to run a couple of commands.
 Just run the following commands from the top-most part of the project directory:
 
 `npm install`
+`npm initialize`
 `npm start`
 
 Then you should be all ready to go!
@@ -38,13 +41,14 @@ The folder structure ...
     └── .gitignore
     └── package.json
 ├── server
+    └── node_modules
     └── bin
         └── www <- Sets the top-level server configuration for the express app
     └── db
         └── ... <- Contains the js files for db schema, configuration, connections, etc.
     └── app.js <- Entry point for the server-side code (e.g. sets up API endpoints)
     └── package.json
-
+├── node_modules
 ├── README.md
 ```
 
