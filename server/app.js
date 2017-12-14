@@ -1,10 +1,29 @@
 const express = require('express')
-const DB = require('./services/databaseService')
+const Mongoose = require('mongoose')
+const Schemas = require('./db/schemas')
+const mockData = require('./mockData')
 const app = express()
 
-DB.initialize()
+const DB_PORT = 27017
+const CONNECTION_URL = `mongodb://admin:fuckmarquette>@ds137686.mlab.com:37686/restaurant-advisor`
+ 
+const handleConnectionError = err => { throw `Unable to connect to Mongo instance @ ${CONNECTION_URL}:\n${JSON.stringify(err)}` }
 
-app.get('/', (req, res) => res.send("Go to localhost:3000"))
+Mongoose.connect(CONNECTION_URL, (err) => {
+    if (!err) console.log(`Successfully connected to mongo instance @ ${CONNECTION_URL}!\n`)
+}).then(db => {
+    mockData.restaurants.forEach(restaurant => restaurant.save(err => { 
+        if (!err) console.log(`Successfully saved Restaurant ${restaurant.name}`)
+        else throw `Unable to save object ${restaurant.name} to db`
+    }))
+
+    app.get('/', (req, res) => res.send("Go to localhost:3000"))
+    
+    app.get('/Restaurants', (req, res) => {
+        Schemas.restaurant.find({}, (err, results) => res.send(results))
+    })
+})
+
 
 // const rest = [
 // 	{
@@ -31,12 +50,12 @@ app.get('/', (req, res) => res.send("Go to localhost:3000"))
 //     email: "tony@bologna.pony",
 //     phone: "414-323-4444",
 //     streetNo: 42,
+//     streetNo: 42,
 //     streetName: "W. Wisconsin Ave.",
 //     city: "Milwaukee",
 //     state: "Wisconsin",
 //     zip: "53233",
 // }]
 
-app.get('/Restaurants', (req, res) => DB.getRestaurants(res))
 
 module.exports = app;

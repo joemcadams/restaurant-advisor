@@ -21,7 +21,7 @@ export class App extends React.Component{
     passthroughLogin = () => this.changePage('Restaurant')
     
     logout = async () => { 
-        let response = await fetch('/Restaurants')
+        let response = await fetch('Restaurants')
         let restaurants = await response.json()
         console.log(restaurants)
         this.changePage('Login') 

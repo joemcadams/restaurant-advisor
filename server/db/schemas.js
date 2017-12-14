@@ -55,8 +55,6 @@ const restaurantSchema = new Mongoose.Schema({
     menu: menuSchema
 })
 
-
-
 const orderSchema = new Mongoose.Schema({
     id: Mongoose.Schema.ObjectId,
     date: { type: Date, default: Date.now },
