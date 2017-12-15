@@ -1,10 +1,12 @@
 const express = require('express')
-const DB = require('./services/databaseService')
+const dbService = require('./db/databaseService')
 const app = express()
 
-DB.initialize()
+dbService.setup()
+app.get('/Restaurants', (req, res) => {
+    dbService.getAllRestaurants(res)
+})
 
-app.get('/', (req, res) => res.send("Go to localhost:3000"))
 
 // const rest = [
 // 	{
@@ -31,12 +33,12 @@ app.get('/', (req, res) => res.send("Go to localhost:3000"))
 //     email: "tony@bologna.pony",
 //     phone: "414-323-4444",
 //     streetNo: 42,
+//     streetNo: 42,
 //     streetName: "W. Wisconsin Ave.",
 //     city: "Milwaukee",
 //     state: "Wisconsin",
 //     zip: "53233",
 // }]
 
-app.get('/Restaurants', (req, res) => DB.getRestaurants(res))
 
 module.exports = app;
