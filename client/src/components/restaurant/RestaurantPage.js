@@ -3,43 +3,12 @@ import * as React from 'react'
 import { RestaurantList } from './RestaurantList'
 import { cloneStateWith } from '../../utils'
 
-const rest = [
-	{
-	name: "Tony's Balogna Pony",
-    diningType: "Fast Food",
-    hours: "9AM-5PM",
-    priceRange: "5-35",
-    offersDelivery: true,
-    outdoors: true,
-    email: "tony@bologna.pony",
-    phone: "414-323-4444",
-    streetNo: 42,
-    streetName: "W. Wisconsin Ave.",
-    city: "Milwaukee",
-    state: "Wisconsin",
-    zip: "53233",
-},{
-	name: "Red Rocket",
-    diningType: "Fast Food",
-    hours: "9AM-5PM",
-    priceRange: "5-35",
-    offersDelivery: true,
-    outdoors: true,
-    email: "tony@bologna.pony",
-    phone: "414-323-4444",
-    streetNo: 42,
-    streetName: "W. Wisconsin Ave.",
-    city: "Milwaukee",
-    state: "Wisconsin",
-    zip: "53233",
-}]
-
 export class RestaurantPage extends React.Component{
 
     constructor(){
         super()
         this.state = {
-            restaurants: rest,
+            restaurants: [],
             searchTerms: '',
         }
     }
