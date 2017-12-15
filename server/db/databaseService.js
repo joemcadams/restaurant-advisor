@@ -53,7 +53,9 @@ const addReviewToRestaurant = (review, restaurantName, res) => {
     MongoClient.connect(CONNECTION_URL, (err, dbClient) => {
         if (err) handleConnectionError(err)
         const db = dbClient.db(DB_NAME)
-        db.collection(Tables.restaurant).update({ name: restaurantName }, { '$push': { "reviews": review }})
+        db.collection(Tables.restaurant).update({ name: restaurantName }, { '$push': { "reviews": review }}, (err, result) => {
+            err ? res.status(404) : res.status(200)
+        })
     })
 
 }
@@ -68,6 +70,24 @@ const authenticateUser = (userEmail, password, res) => {
                 : result.length > 0
                     ? res.status(200).send(true)
                     : res.status(404).send(false)
+        })
+    })
+}
+
+const addUser = (user, res) => {
+    MongoClient.connect(CONNECTION_URL, (err, dbClient) => {
+        if (err) handleConnectionError(err)
+        const db = dbClient.db(DB_NAME)
+        db.collection(Tables.customer).insertOne(user, (err, result) => err ? res.status(401) : res.status(200))
+    })
+}
+
+const addOrderToRestaurant = (restaurantName, order, res) => {
+    MongoClient.connect(CONNECTION_URL, (err, dbClient) => {
+        if (err) handleConnectionError(err)
+        const db = dbClient.db(DB_NAME)
+        db.collection(Tables.restaurant).update({ name: restaurantName }, { '$push': { "orders": order }}, (err, result) => {
+            err ? res.status(404) : res.status(200)
         })
     })
 }
