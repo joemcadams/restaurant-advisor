@@ -1,44 +1,23 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const dbService = require('./db/databaseService')
 const app = express()
+
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 dbService.setup()
 app.get('/Restaurants', (req, res) => {
     dbService.getAllRestaurants(res)
 })
 
+app.get('/Users/:user/:pass', (req, res) => {
+	dbService.authenticateUser(req.params.user, req.params.pass, res)
+})
 
-// const rest = [
-// 	{
-// 	name: "Tony's Balogna Pony",
-//     diningType: "Fast Food",
-//     hours: "9AM-5PM",
-//     priceRange: "5-35",
-//     offersDelivery: true,
-//     outdoors: true,
-//     email: "tony@bologna.pony",
-//     phone: "414-323-4444",
-//     streetNo: 42,
-//     streetName: "W. Wisconsin Ave.",
-//     city: "Milwaukee",
-//     state: "Wisconsin",
-//     zip: "53233",
-// },{
-// 	name: "Red Rocket",
-//     diningType: "Fast Food",
-//     hours: "9AM-5PM",
-//     priceRange: "5-35",
-//     offersDelivery: true,
-//     outdoors: true,
-//     email: "tony@bologna.pony",
-//     phone: "414-323-4444",
-//     streetNo: 42,
-//     streetNo: 42,
-//     streetName: "W. Wisconsin Ave.",
-//     city: "Milwaukee",
-//     state: "Wisconsin",
-//     zip: "53233",
-// }]
-
+app.post('/Review/:restaurant', (req, res) => {
+	console.log(req.body)
+	dbService.addReviewToRestaurant(req.body, req.params.restaurant, res)
+})
 
 module.exports = app;

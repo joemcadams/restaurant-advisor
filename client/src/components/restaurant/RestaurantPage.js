@@ -38,7 +38,11 @@ export class RestaurantPage extends React.Component{
 	    			listStyle={{ width: '80vw' }}
 	    			textFieldStyle={{ width: '80vw', marginBottom: '10vh' }}
 	    		/>
-	    		<RestaurantList list={this.state.restaurants.filter(rest => rest.name.toLowerCase().includes(this.state.searchTerms.toLowerCase()))} openMenu={this.props.openMenu} />
+	    		<RestaurantList 
+	    			list={this.state.restaurants.filter(rest => rest.name.toLowerCase().includes(this.state.searchTerms.toLowerCase()))} 
+	    			openMenu={this.props.openMenu} 
+	    			customer={this.props.customer}
+	    		/>
     		</Paper>
     	)
     }

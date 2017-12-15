@@ -44,7 +44,7 @@ export class RestaurantCard extends React.Component{
 		            <h4>{ `${this.props.city}, ${this.props.state}` }</h4>
 		            <h4>{ `${this.props.zip}` }</h4>
 		            <RaisedButton label={`Review ${this.props.name}`} secondary={true} onClick={this.openReview}/>
-		            <AddReviewDialog title={this.props.name} isOpen={this.state.reviewIsOpen} handleClose={this.closeReview}/>
+		            <AddReviewDialog restaurant={this.props.name} customer={this.props.customer} isOpen={this.state.reviewIsOpen} handleClose={this.closeReview}/>
 		            <RaisedButton label={`Order from ${this.props.name}`} primary={true} style={{marginLeft:'1vw'}} onClick={this.openMenu}/>
 		        </CardText>
 		    </Card>

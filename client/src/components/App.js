@@ -11,14 +11,21 @@ export class App extends React.Component{
 
 	constructor(){
 		super()
-		this.state = { page: 'Login', restaurant: '' }
+		this.state = { 
+			page: 'Login', 
+			restaurant: '',
+			customer:'',
+		}
 	}
 	
 	changePage = (page) => {
 		this.setState(cloneStateWith(this.state, {page: page}))
 	}
 	
-    passthroughLogin = () => this.changePage('Restaurant')
+    passthroughLogin = (customer) => {
+    	this.changePage('Restaurant')
+    	this.setState(cloneStateWith(this.state, {customer: customer}))
+    }
     
     logout = async () => { 
         let response = await fetch('Restaurants')
@@ -38,8 +45,8 @@ export class App extends React.Component{
 				{this.state.page === 'Login' ? <div /> : <NavBar onLogout={ () => this.logout.bind(this) }/>}
 				{match(this.state.page)
 					.addCase('Login', <LoginPage passthrough={this.passthroughLogin} />)
-					.addCase('Menu', <MenuPage restaurant={this.state.restaurant} />)
-					.addCase('Restaurant', <RestaurantPage openMenu={this.openMenuForRestaurant}/>)
+					.addCase('Menu', <MenuPage restaurant={this.state.restaurant}/>)
+					.addCase('Restaurant', <RestaurantPage openMenu={this.openMenuForRestaurant} customer={this.state.customer}/>)
 					.setDefault(<div />)
 					.result()
 				}
