@@ -98,5 +98,7 @@ module.exports = {
     setup: setupDbService,
     getAllRestaurants: getAllRestaurants,
     addReviewToRestaurant: addReviewToRestaurant,
+    addOrderToRestaurant: addOrderToRestaurant,
+    addUser: addUser,
     authenticateUser: authenticateUser
 }

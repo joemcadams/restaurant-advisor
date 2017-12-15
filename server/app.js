@@ -16,8 +16,12 @@ app.get('/Users/:user/:pass', (req, res) => {
 })
 
 app.post('/Review/:restaurant', (req, res) => {
-	console.log(req.body)
 	dbService.addReviewToRestaurant(req.body, req.params.restaurant, res)
+})
+
+app.post('/Order/:restaurant', (req, res) => {
+	console.log(req.body)
+	dbService.addOrderToRestaurant(req.params.restaurant, req.body, res)
 })
 
 module.exports = app;

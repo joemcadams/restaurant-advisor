@@ -34,7 +34,7 @@ export class MenuPage extends React.Component {
             menu: restaurant.menu.food.map((item, i) => {
                 return {
                     id: i,
-                    title: item.title,
+                    name: item.name,
                     price: item.price,
                     description: item.description,
                     category: item.category
@@ -61,6 +61,7 @@ export class MenuPage extends React.Component {
                 totalPrice: updatedPrice 
             }
         }))
+        this.props.updateOrderPage(orderItems, updatedPrice)
     }
 
     getMenu = () => group(this.state.menu).by('category').map((item, i) => {
@@ -68,7 +69,7 @@ export class MenuPage extends React.Component {
             <MenuItem
                 key={ i }
                 id={ item.id }
-                title={ item.title }
+                title={ item.name }
                 price={ item.price }
                 description={ item.description }
                 handleOrder={ this.openDialog }

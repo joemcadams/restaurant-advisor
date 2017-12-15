@@ -24,7 +24,14 @@ export class NavBar extends Component {
                     <ToolbarTitle style={{ marginLeft: '2vw' }} text='Restaurant Advisor'/>
                 </ToolbarGroup>
                 <ToolbarGroup>
-                    <RaisedButton label='Current Order' primary={ true } icon={ <MdShoppingBasket size={ 20 } /> } />
+                    {this.props.menuPage 
+                    	? <RaisedButton 
+                    			label='Current Order' 
+                    			primary={ true } 
+                    			icon={ <MdShoppingBasket size={ 20 } /> }
+                    			onClick={this.props.goToOrderPage}
+                    	/> 
+                    	: <div/>}
                     <ToolbarSeparator/>
                     <RaisedButton label='Logout' secondary={ true } onClick={ this.props.onLogout() }/>
                 </ToolbarGroup>

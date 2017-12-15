@@ -4,7 +4,7 @@ import { cloneStateWith } from '../../utils'
 
 const postReview = (restaurant, review) => {
 	fetch(
-		`Review/${restaurant}`, 
+		`/Review/${restaurant}`, 
 		{
 			method:'POST', 
 			body: review,

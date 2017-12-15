@@ -5,6 +5,7 @@ import { NavBar } from './NavBar'
 import { LoginPage } from './LoginPage'
 import { MenuPage } from './menu/MenuPage'
 import { RestaurantPage } from './restaurant/RestaurantPage'
+import { OrderPage } from './order/OrderPage'
 import { match, cloneStateWith } from '../utils'
 
 export class App extends React.Component{
@@ -15,6 +16,13 @@ export class App extends React.Component{
 			page: 'Login', 
 			restaurant: '',
 			customer:'',
+			order: {
+				date: new Date(),
+				isDelivery: false,
+				isTakeOut: false,
+				order: []
+			},
+			price: 0,
 		}
 	}
 	
@@ -38,19 +46,38 @@ export class App extends React.Component{
     	this.setState(cloneStateWith(this.state, {page: 'Menu', restaurant: rest}))
     }
     
-	render(){
-		return(
+    goToOrderPage = () =>{
+    	this.setState(cloneStateWith(this.state, {page: 'Order'}))
+    }
+
+	backToRestaurants = () => {
+		this.setState(cloneStateWith(this.state, {page: 'Restaurant'}))
+	}
+
+	updateOrderPage = (items, price, takeout, delivery) => {
+		this.setState(cloneStateWith(this.state, {order: cloneStateWith(this.state.order, {order:items, isDelivery:delivery, isTakeOut:takeout}), price: price}))
+	}
+    
+	render = () => (
 			<MuiThemeProvider>
-			<div>
-				{this.state.page === 'Login' ? <div /> : <NavBar onLogout={ () => this.logout.bind(this) }/>}
-				{match(this.state.page)
-					.addCase('Login', <LoginPage passthrough={this.passthroughLogin} />)
-					.addCase('Menu', <MenuPage restaurant={this.state.restaurant}/>)
-					.addCase('Restaurant', <RestaurantPage openMenu={this.openMenuForRestaurant} customer={this.state.customer}/>)
-					.setDefault(<div />)
-					.result()
-				}
+				<div>
+					{this.state.page === 'Login' 
+						? <div /> 
+						: <NavBar 
+							onLogout={ () => this.logout.bind(this) } 
+							menuPage={this.state.page === 'Menu'}
+							goToOrderPage={this.goToOrderPage}
+						/>
+					}
+					{match(this.state.page)
+						.addCase('Login', <LoginPage passthrough={this.passthroughLogin} />)
+						.addCase('Menu', <MenuPage restaurant={this.state.restaurant} updateOrderPage={this.updateOrderPage}/>)
+						.addCase('Restaurant', <RestaurantPage openMenu={this.openMenuForRestaurant} customer={this.state.customer}/>)
+						.addCase('Order', <OrderPage totalPrice={this.state.price} order={this.state.order} restaurant={this.state.restaurant} backToRestaurants={this.backToRestaurants}/>)
+						.setDefault(<div />)
+						.result()
+					}
 				</div>
 			</MuiThemeProvider>
-	)}
+	)
 }
