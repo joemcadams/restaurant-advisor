@@ -16,8 +16,7 @@ export class LoginPage extends React.Component{
 	updateUser = (user) => this.setState(cloneStateWith(this.state, {user:user}))
 	updatePass = (pass) => this.setState(cloneStateWith(this.state, {pass:pass}))
 	
-	render(){
-		return(<div>
+	render = () => (<div>
         <Paper zDepth={ 1 } style={{ width: '30vw', marginLeft: '35vw', marginTop: '30vh', padding: '2em' }}>
             <TextField
                 fullWidth={ true }
@@ -31,4 +30,5 @@ export class LoginPage extends React.Component{
             <RaisedButton label={ 'New User' } secondary={ true } fullWidth={ true }/>
         </Paper>
     </div>
-)}
+	)
+}

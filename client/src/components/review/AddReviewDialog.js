@@ -2,6 +2,10 @@ import * as React from 'react'
 import { Dialog, RaisedButton, RadioButtonGroup, RadioButton, TextField } from 'material-ui'
 import { cloneStateWith } from '../../utils'
 
+const postReview = (restaurant, customer, title, description) => {
+	fetch(`Review/${restaurant}/${customer}`, {method:'POST', body:{title, description}})
+}
+
 export class AddReviewDialog extends React.Component {
     
 	constructor(props){
@@ -12,9 +16,9 @@ export class AddReviewDialog extends React.Component {
 		}
 	}
 
-	
 	sendReview = () => {
-		fetch(`/Review/${this.props.restaurant}/${this.props.customer}`, { method:'POST', body:{this.state.title, this.state.description}})
+		postReview(this.props.restaurant, this.props.customer, this.state.title, this.state.description)
+		this.props.handleClose()
 	}
 	
     getButtons = () => [
