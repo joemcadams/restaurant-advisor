@@ -49,9 +49,34 @@ const getAllRestaurants = (res) => {
     })
 }
 
+const addReviewToRestaurant = (review, restaurantName, res) => {
+    MongoClient.connect(CONNECTION_URL, (err, dbClient) => {
+        if (err) handleConnectionError(err)
+        const db = dbClient.db(DB_NAME)
+        db.collection(Tables.restaurant).update({ name: restaurantName }, { '$push': { "reviews": review }})
+    })
+
+}
+
+const authenticateUser = (userEmail, password, res) => {
+    MongoClient.connect(CONNECTION_URL, (err, dbClient) => {
+        if (err) handleConnectionError(err)
+        const db = dbClient.db(DB_NAME)
+        db.collection(Tables.customer).find({ email: userEmail, password: password }).toArray((err, result) => {
+            err
+                ? res.status(501).send({ error: `Unable to process request, entries don't exist.`})
+                : result.length > 0
+                    ? res.status(200).send(true)
+                    : res.status(404).send(false)
+        })
+    })
+}
+
 const setupDbService = db => validateInitialData(db)
 
 module.exports = {
     setup: setupDbService,
-    getAllRestaurants: getAllRestaurants
+    getAllRestaurants: getAllRestaurants,
+    addReviewToRestaurant: addReviewToRestaurant,
+    authenticateUser: authenticateUser
 }
