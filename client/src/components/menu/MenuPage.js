@@ -4,7 +4,6 @@ import { cloneStateWith, group } from '../../utils'
 import { RestaurantTitle } from '../restaurant/RestaurantTitle'
 import { MenuOrderDialog } from './MenuOrderDialog'
 import { MenuItem } from './MenuItem'
-import * as MENU_ITEMS from '../../SAMPLE_MENU.json'
 
 export class MenuPage extends React.Component {
     
@@ -24,13 +23,15 @@ export class MenuPage extends React.Component {
 
     componentDidMount = async () => {
     	
-    	let menu = await fetch(`/Menu/${this.props.restaurant}`)
+    	let response = await fetch('/Restaurants')
+    	let restaurants = await response.json()
+    	let restaurant = restaurants.find(rest => rest.name === this.props.restaurant)
     	
         this.setState({
             orderItemModalOpen: this.state.orderItemModalOpen,
             editItemModalOpen: this.state.editItemModalOpen,
             menuID: this.state.menuID,
-            menu: MENU_ITEMS.items.map((item, i) => {
+            menu: restaurant.menu.food.map((item, i) => {
                 return {
                     id: i,
                     title: item.title,
